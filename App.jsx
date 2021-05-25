@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  ScrollView,
-  View,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import axios from 'axios';
 import Article from './components/Article';
+import Hero from './components/Hero';
 
 const App = () => {
   const [articles, setArticles] = useState([]);
@@ -25,15 +17,17 @@ const App = () => {
     fetchArticles();
   }, []);
 
-  let articleCard = articles.map((article, index) => {
-    return <Article article={article} index={index} key={index} />;
+  let articleList = articles.slice(1).map((article) => {
+    return <Article article={article} key={article.id} />;
   });
 
   return (
-    <View contentContainerStyle={styles.container}>
-      <ScrollView >
-        <TouchableOpacity>{articleCard}</TouchableOpacity>
-      </ScrollView>
+    <View style={styles.container}>
+      <Hero article={articles[0]} />
+      <View>
+        <Text style={styles.header}>Most Recent</Text>
+      </View>
+      <ScrollView>{articleList}</ScrollView>
     </View>
   );
 };
@@ -43,24 +37,15 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#111518',
   },
-  image: {
-    height: 250,
-    width: Dimensions.get('window').width,
-  },
-  card: {
-    position: 'absolute',
-    width: Dimensions.get('window').width,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.6)',
-  },
-
-  title: {
-    color: '#fff',
-    fontSize: 20,
-    paddingVertical: 8,
-    paddingHorizontal: 20,
+  header: {
+    color: 'white',
+    textAlign: 'left',
+    textTransform: 'uppercase',
+    paddingLeft: 15,
+    paddingVertical: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: '#CEC269',
   },
 });
