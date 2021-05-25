@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
+  ScrollView,
   View,
   FlatList,
   Image,
@@ -13,32 +14,26 @@ import Article from './components/Article';
 
 const App = () => {
   const [articles, setArticles] = useState([]);
-  debugger
   const fetchArticles = async () => {
     const response = await axios.get(
       'https://fakest-newzz.herokuapp.com/api/articles'
-      );
-      setArticles(response.data.articles);
-    };
+    );
+    setArticles(response.data.articles);
+  };
 
   useEffect(() => {
     fetchArticles();
   }, []);
 
+  let articleCard = articles.map((article, index) => {
+    return <Article article={article} index={index} key={index} />;
+  });
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity>
-        <Image source={{ uri: articles[0].image }} style={styles.image} />
-        <View style={styles.card}>
-          <Text style={styles.title}>{articles[0].title}</Text>
-        </View>
-      </TouchableOpacity>
-      <FlatList
-        data={articles.slice(1)}
-        renderItem={({ item }) => {
-          return <Article article={item} />;
-        }}
-      />
+    <View contentContainerStyle={styles.container}>
+      <ScrollView >
+        <TouchableOpacity>{articleCard}</TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
