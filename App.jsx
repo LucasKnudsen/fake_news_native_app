@@ -1,12 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import axios from 'axios'
+import Article from './components/Article'
 
 const App = () => {
+  const [articles, setArticles] = useState([])
+
+  const fetchArticles = async () => {
+    const response = await axios.get('https://fakest-newzz.herokuapp.com/api/articles')
+    setArticles(response.data.articles)
+  }
+
+  useEffect(() => {
+    fetchArticles()
+  }, [])
+
+
   return (
     <View style={styles.container}>
+      <FlatList 
+      data={articles}
+      renderItem={({item}) => {
+        return <Article article={item} />
+      }}
+      />
       <Text>Hello Boo</Text>
-      <StatusBar style="auto" />
     </View>
   );
 }
