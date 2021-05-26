@@ -1,19 +1,20 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Dimensions,
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Image, 
+  TouchableOpacity
 } from 'react-native';
 
 const Article = ({ article }) => {
   return (
-    <TouchableOpacity style={styles.row}>
+    <TouchableOpacity testID="article" style={styles.row}>
       <Image source={{ uri: article.image }} style={styles.image} />
       <View style={styles.content}>
-        <Text style={styles.title}>{article.title}</Text>
+        <Text testID="title" style={styles.title}>
+          {article.title}
+        </Text>
         <View
           style={{
             flexDirection: 'row',
@@ -21,10 +22,12 @@ const Article = ({ article }) => {
             justifyContent: 'space-between',
           }}
         >
-          <Text style={{ color: '#CEC269', fontSize: 10 }}>
+          <Text testID="author" style={{ color: '#CEC269', fontSize: 10 }}>
             By {article.author.first_name} {article.author.last_name}
           </Text>
-          <Text style={{ color: '#CEC269', fontSize: 10 }}>{article.date}</Text>
+          <Text testID="date" style={{ color: '#CEC269', fontSize: 10 }}>
+            {article.date}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

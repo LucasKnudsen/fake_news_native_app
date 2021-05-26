@@ -3,6 +3,7 @@ describe('User can view content of an article', () => {
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'articles.json',
     });
+    cy.viewport('iphone-x');
     cy.visit('/');
   });
   it('is expected to display a hero section', () => {
@@ -16,12 +17,12 @@ describe('User can view content of an article', () => {
         cy.get('[data-testid=category]').should('contain', 'Aliens');
       });
   });
-  it('is expected to display a list of 5 articles', () => {
+  it('is expected to display a list of 6 articles', () => {
     cy.get('[data-testid=article]').should('have.length', 6);
   });
   it('is expected to display title, date, and author of article', () => {
     cy.get('[data-testid=article]')
-      .second()
+      .first()
       .within(() => {
         cy.get('[data-testid=title]').should(
           'contain',
