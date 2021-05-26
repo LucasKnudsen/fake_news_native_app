@@ -16,7 +16,7 @@ const App = () => {
           options={() => ({
             title: 'Fake ? News',
             headerStyle: {
-              backgroundColor: '#000',
+              backgroundColor: '#111518',
             },
             headerTintColor: '#CEC269',
             headerTitleStyle: {
@@ -29,7 +29,16 @@ const App = () => {
           name="single article"
           component={SingleArticleView}
           options={() => ({
-            headerBackTitle: 'Back!',
+            headerBackTitle: 'Back',
+            title: 'Fake ? News',
+            headerStyle: {
+              backgroundColor: '#111518',
+            },
+            headerTintColor: '#CEC269',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+              textAlign: 'center',
+            }
           })}
         />
       </Stack.Navigator>
@@ -38,3 +47,4 @@ const App = () => {
 };
 
 export default App;
+

@@ -31,7 +31,7 @@ const Hero = ({ article, navigation }) => {
               {article.category}
             </Text>
           </View>
-          <Text testID="title" style={{ color: 'white', fontSize: 20 }}>
+          <Text testID="title" style={{ color: 'lightgray', fontSize: 20 }}>
             {article.title}
           </Text>
         </View>
@@ -61,6 +61,6 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   category: {
-    color: 'white',
+    color: 'lightgray',
   },
 });

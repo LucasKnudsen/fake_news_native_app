@@ -18,7 +18,6 @@ describe('User can see single article', () => {
     cy.get('[data-testid=body]').should('exist');
     cy.get('[data-testid=image]').should('exist');
     cy.get('[data-testid=date]').should('contain', '2021-05-25');
-    cy.get('[data-testid=category]').should('contain', 'Science');
     cy.get('[data-testid=author]').should('contain', 'Mr. Fake');
   });
 });

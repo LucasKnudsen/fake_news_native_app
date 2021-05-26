@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   title: {
-    color: '#fff',
+    color: 'lightgray',
     fontSize: 15,
   },
 
