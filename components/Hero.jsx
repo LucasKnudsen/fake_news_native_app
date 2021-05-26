@@ -6,28 +6,33 @@ import {
   View,
   Image,
   ImageBackground,
+  Touchable,
+  TouchableOpacity,
 } from 'react-native';
 
 const Hero = ({ article }) => {
   return (
     <>
-      {article && (
-        <ImageBackground
-          style={styles.heroContainer}
-          source={{
-            uri: 'https://cdn.mos.cms.futurecdn.net/mYgGsgUeqbMMYbZbTK7uP6.jpg',
-          }}>
-          <View style={styles.content}>
-            <View style={{ flexDirection: 'row', marginBottom: 15 }}>
-              <Text style={styles.subHeader}>Featured</Text>
-              <Text style={styles.category}>{article.category}</Text>
+      <TouchableOpacity>
+        {article && (
+          <ImageBackground
+            style={styles.heroContainer}
+            source={{
+              uri: article.image,
+            }}
+          >
+            <View style={styles.content}>
+              <View style={{ flexDirection: 'row', marginBottom: 15 }}>
+                <Text style={styles.subHeader}>Featured</Text>
+                <Text style={styles.category}>{article.category}</Text>
+              </View>
+              <Text style={{ color: 'white', fontSize: 20 }}>
+                {article.title}
+              </Text>
             </View>
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              {article.title}
-            </Text>
-          </View>
-        </ImageBackground>
-      )}
+          </ImageBackground>
+        )}
+      </TouchableOpacity>
     </>
   );
 };
@@ -39,12 +44,13 @@ const styles = StyleSheet.create({
     height: Dimensions.get('window').height * 0.5,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    paddingBottom: 30,
   },
   content: {
     backgroundColor: '#000000a0',
     paddingHorizontal: 15,
     paddingTop: 15,
+    paddingBottom: 30,
+    width: Dimensions.get('window').width,
   },
   subHeader: {
     color: '#CEC269',

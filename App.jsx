@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, FlatList, View } from 'react-native';
 import axios from 'axios';
 import Article from './components/Article';
 import Hero from './components/Hero';
@@ -17,17 +17,25 @@ const App = () => {
     fetchArticles();
   }, []);
 
-  let articleList = articles.slice(1).map((article) => {
-    return <Article article={article} key={article.id} />;
-  });
-
   return (
     <View style={styles.container}>
-      <Hero article={articles[0]} />
-      <View>
-        <Text style={styles.header}>Most Recent</Text>
-      </View>
-      <ScrollView>{articleList}</ScrollView>
+      <FlatList
+        data={articles}
+        renderItem={({ item, index }) => {
+          if (index === 0) {
+            return (
+              <>
+                <Hero article={item} />
+                <View>
+                  <Text style={styles.header}>Most Recent</Text>
+                </View>
+              </>
+            );
+          } else {
+            return <Article article={item} key={item.id} />;
+          }
+        }}
+      />
     </View>
   );
 };
