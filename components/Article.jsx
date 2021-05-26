@@ -1,18 +1,19 @@
 import React from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
-  Image, 
-  TouchableOpacity
-} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-const Article = ({ article }) => {
+const Article = ({ article, navigation }) => {
   return (
-    <TouchableOpacity testID="article" style={styles.row}>
+    <TouchableOpacity
+      testID='article'
+      style={styles.row}
+      onPress={() => {
+        navigation.navigate('single article', {
+          article: article,
+        });
+      }}>
       <Image source={{ uri: article.image }} style={styles.image} />
       <View style={styles.content}>
-        <Text testID="title" style={styles.title}>
+        <Text testID='title' style={styles.title}>
           {article.title}
         </Text>
         <View
@@ -20,12 +21,11 @@ const Article = ({ article }) => {
             flexDirection: 'row',
             marginTop: 5,
             justifyContent: 'space-between',
-          }}
-        >
-          <Text testID="author" style={{ color: '#CEC269', fontSize: 10 }}>
+          }}>
+          <Text testID='author' style={{ color: '#CEC269', fontSize: 10 }}>
             By {article.author.first_name} {article.author.last_name}
           </Text>
-          <Text testID="date" style={{ color: '#CEC269', fontSize: 10 }}>
+          <Text testID='date' style={{ color: '#CEC269', fontSize: 10 }}>
             {article.date}
           </Text>
         </View>

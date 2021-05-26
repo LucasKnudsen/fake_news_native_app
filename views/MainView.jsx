@@ -4,8 +4,9 @@ import axios from 'axios';
 import Article from '../components/Article';
 import Hero from '../components/Hero';
 
-const MainView = () => {
+const MainView = ({navigation}) => {
   const [articles, setArticles] = useState([]);
+  const [article, setArticle] = useState({});
 
   const fetchArticles = async () => {
     const response = await axios.get(
@@ -13,6 +14,13 @@ const MainView = () => {
     );
     setArticles(response.data.articles);
   };
+
+  // const fetchArticle = async () => {
+  //   const response = await axios.get(
+  //     `https://fakest-newzz.herokuapp.com/api/articles/${article.id}`
+  //   );
+  //   setArticle(response.data.article);
+  // };
 
   useEffect(() => {
     fetchArticles();
@@ -22,18 +30,19 @@ const MainView = () => {
     <View style={styles.container}>
       <FlatList
         data={articles}
+        keyExtractor={(article) => article.id}
         renderItem={({ item, index }) => {
           if (index === 0) {
             return (
               <>
-                <Hero article={item} />
+                <Hero article={item} key={item.id} navigation={navigation} />
                 <View>
                   <Text style={styles.header}>Most Recent</Text>
                 </View>
               </>
             );
           } else {
-            return <Article article={item} key={item.id} />;
+            return <Article article={item} key={item.id} navigation={navigation}/>;
           }
         }}
       />
