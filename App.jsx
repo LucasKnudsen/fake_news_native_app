@@ -11,7 +11,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name='Home'
+          name="Home"
           component={MainView}
           options={() => ({
             title: 'Fake ? News',
@@ -26,11 +26,11 @@ const App = () => {
           })}
         />
         <Stack.Screen
-        name='single article'
-        component={SingleArticleView}
-        options={() => ({
-          headerBackTitle: 'Back!'
-        })}
+          name="single article"
+          component={SingleArticleView}
+          options={() => ({
+            headerBackTitle: 'Back!',
+          })}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,17 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import axios from 'axios';
 
 const SingleArticleView = (props) => {
   const { article } = props.route.params;
+  const [singleArticle, setSingelArticle] = useState({});
+
+  const fetchArticle = async () => {
+    const response = await axios.get(
+      `https://fakest-newzz.herokuapp.com/api/articles/${article.id}`
+    );
+    setSingelArticle(response.data.article);
+  };
+
+  useEffect(() => {
+    fetchArticle();
+  }, []);
+
   return (
     <>
-      <Image testID='image' source={{ uri: article.image }} style={styles.image} />
+      <Image
+        testID="image"
+        source={{ uri: singleArticle.image }}
+        style={styles.image}
+      />
       <View style={styles.container}>
-        <Text testID='title' style={styles.header}>{article.title}</Text>
-        <Text testID='body' style={styles.body}>{article.body}</Text>
-        <Text testID='author' style={styles.author}>{article.author.first_name}{article.author.last_name}</Text>
-        <Text testID='category' style={styles.category}>{article.category}</Text>
-        <Text testID='date' style={styles.date}>{article.date}</Text>
+        <Text testID="title" style={styles.header}>
+          {singleArticle.title}
+        </Text>
+        <Text testID="body" style={styles.body}>
+          {singleArticle.body}
+        </Text>
+        <Text testID="author" style={styles.author}>
+          {article.author.first_name} {article.author.last_name}{' '}
+        </Text>
+        <Text testID="category" style={styles.category}>
+          {singleArticle.category}
+        </Text>
+        <Text testID="date" style={styles.date}>
+          {singleArticle.date}
+        </Text>
       </View>
     </>
   );

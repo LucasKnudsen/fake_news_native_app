@@ -4,9 +4,8 @@ import axios from 'axios';
 import Article from '../components/Article';
 import Hero from '../components/Hero';
 
-const MainView = ({navigation}) => {
+const MainView = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
-  const [article, setArticle] = useState({});
 
   const fetchArticles = async () => {
     const response = await axios.get(
@@ -14,13 +13,6 @@ const MainView = ({navigation}) => {
     );
     setArticles(response.data.articles);
   };
-
-  // const fetchArticle = async () => {
-  //   const response = await axios.get(
-  //     `https://fakest-newzz.herokuapp.com/api/articles/${article.id}`
-  //   );
-  //   setArticle(response.data.article);
-  // };
 
   useEffect(() => {
     fetchArticles();
@@ -42,7 +34,9 @@ const MainView = ({navigation}) => {
               </>
             );
           } else {
-            return <Article article={item} key={item.id} navigation={navigation}/>;
+            return (
+              <Article article={item} key={item.id} navigation={navigation} />
+            );
           }
         }}
       />
