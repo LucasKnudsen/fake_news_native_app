@@ -1,0 +1,11 @@
+{
+  "article": {
+    "id": 2,
+    "premium": true,
+    "title": "Earth is a frisbee being thrown by God",
+    "body": "This is real news guys, for real.",
+    "date": "2021-05-12",
+    "rating": 5,
+    "image": "https://www.kino.dk/sites/default/files/styles/k_width_big/public/primary-pictures/alien_1.jpg?itok=OklM89YT"
+  }
+}

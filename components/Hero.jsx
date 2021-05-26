@@ -13,20 +13,21 @@ import {
 const Hero = ({ article }) => {
   return (
     <>
-      <TouchableOpacity>
+      <TouchableOpacity testID='hero-article'>
         {article && (
           <ImageBackground
             style={styles.heroContainer}
             source={{
               uri: article.image,
-            }}
-          >
+            }}>
             <View style={styles.content}>
               <View style={{ flexDirection: 'row', marginBottom: 15 }}>
                 <Text style={styles.subHeader}>Featured</Text>
-                <Text style={styles.category}>{article.category}</Text>
+                <Text testID='category' style={styles.category}>
+                  {article.category}
+                </Text>
               </View>
-              <Text style={{ color: 'white', fontSize: 20 }}>
+              <Text testID='title' style={{ color: 'white', fontSize: 20 }}>
                 {article.title}
               </Text>
             </View>
