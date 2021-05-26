@@ -19,7 +19,8 @@ const Article = ({ article }) => {
             flexDirection: 'row',
             marginTop: 5,
             justifyContent: 'space-between',
-          }}>
+          }}
+        >
           <Text style={{ color: '#CEC269', fontSize: 10 }}>
             By {article.author.first_name} {article.author.last_name}
           </Text>
