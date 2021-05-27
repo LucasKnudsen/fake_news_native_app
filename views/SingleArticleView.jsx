@@ -22,7 +22,9 @@ const SingleArticleView = (props) => {
   };
 
   const showArticlesInCategory = () => {
-    props.navigation.navigate('view by category', {category: singleArticle.category});
+    props.navigation.navigate('view by category', {
+      category: singleArticle.category,
+    });
   };
 
   useEffect(() => {
@@ -39,7 +41,7 @@ const SingleArticleView = (props) => {
 
       <View style={styles.container}>
         <Pressable
-          testID='category-button'          
+          testID='category-button'
           style={styles.button}
           onPress={() => showArticlesInCategory()}>
           <Text>{singleArticle.category}</Text>
@@ -51,12 +53,7 @@ const SingleArticleView = (props) => {
         <Text testID='body' style={styles.body}>
           {singleArticle.body}
         </Text>
-        <View
-          style={{
-            flexDirection: 'row',
-            paddingTop: 5,
-            justifyContent: 'space-between',
-          }}>
+        <View style={styles.articleFooter}>
           <Text testID='author' style={styles.sub}>
             By {article.author.first_name} {article.author.last_name}
           </Text>
@@ -107,5 +104,10 @@ const styles = StyleSheet.create({
     height: 30,
     textAlign: 'center',
     padding: 8,
+  },
+  articleFooter: {
+    flexDirection: 'row',
+    paddingTop: 5,
+    justifyContent: 'space-between',
   },
 });

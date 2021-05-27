@@ -8,9 +8,7 @@ const MainView = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
 
   const fetchArticles = async () => {
-    const response = await axios.get(
-      'https://fakest-newzz.herokuapp.com/api/articles'
-    );
+    
     setArticles(response.data.articles);
   };
 

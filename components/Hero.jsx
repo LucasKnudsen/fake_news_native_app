@@ -11,27 +11,25 @@ import {
 const Hero = ({ article, navigation }) => {
   return (
     <TouchableOpacity
-      testID="hero-article"
+      testID='hero-article'
       onPress={() => {
         navigation.navigate('single article', {
           article: article,
         });
-      }}
-    >
+      }}>
       <ImageBackground
         style={styles.heroContainer}
         source={{
           uri: article.image,
-        }}
-      >
+        }}>
         <View style={styles.content}>
-          <View style={{ flexDirection: 'row', marginBottom: 15 }}>
+          <View style={styles.overlay}>
             <Text style={styles.subHeader}>Featured</Text>
-            <Text testID="category" style={styles.category}>
+            <Text testID='category' style={styles.category}>
               {article.category}
             </Text>
           </View>
-          <Text testID="title" style={{ color: 'lightgray', fontSize: 20 }}>
+          <Text testID='title' style={styles.title}>
             {article.title}
           </Text>
         </View>
@@ -62,5 +60,13 @@ const styles = StyleSheet.create({
   },
   category: {
     color: 'lightgray',
+  },
+  title: {
+    color: 'lightgray',
+    fontSize: 20,
+  },
+  overlay: {
+    flexDirection: 'row',
+    marginBottom: 15,
   },
 });

@@ -22,13 +22,13 @@ const Article = ({ article, navigation }) => {
             marginTop: 5,
             justifyContent: 'space-between',
           }}>
-          <Text testID='category' style={{ color: '#CEC269', fontSize: 10 }}>
+          <Text testID='category' style={styles.attributes}>
             {article.category}
           </Text>
-          <Text testID='author' style={{ color: '#CEC269', fontSize: 10 }}>
+          <Text testID='author' style={styles.attributes}>
             By {article.author.first_name} {article.author.last_name}
           </Text>
-          <Text testID='date' style={{ color: '#CEC269', fontSize: 10 }}>
+          <Text testID='date' style={styles.attributes}>
             {article.date}
           </Text>
         </View>
@@ -58,5 +58,9 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
+  },
+  attributes: {
+    color: '#CEC269',
+    fontSize: 10,
   },
 });
