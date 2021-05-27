@@ -6,6 +6,7 @@ import {
   Image,
   Dimensions,
   ScrollView,
+  Button,
 } from 'react-native';
 import axios from 'axios';
 
@@ -35,6 +36,7 @@ const SingleArticleView = (props) => {
         <Text testID='title' style={styles.header}>
           {singleArticle.title}
         </Text>
+        <Button backgroundColor='#CEC269' title={singleArticle.category} />
         <Text testID='body' style={styles.body}>
           {singleArticle.body}
         </Text>
@@ -68,7 +70,6 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width,
   },
   header: {
-    
     padding: 15,
     color: '#CEC269',
     fontSize: 25,
@@ -84,7 +85,6 @@ const styles = StyleSheet.create({
     paddingTop: 2,
     paddingLeft: 15,
   },
-
   date: {
     color: 'gray',
     paddingTop: 2,
