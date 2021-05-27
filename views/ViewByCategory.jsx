@@ -21,6 +21,7 @@ const ViewByCategory = (props) => {
   return (
     <View style={styles.container}>
       <FlatList
+        testID='view-by-category'
         data={articles}
         keyExtractor={(article) => article.id}
         renderItem={({ item }) => {
