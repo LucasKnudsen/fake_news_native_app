@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 const Article = ({ article, navigation }) => {
   return (
     <TouchableOpacity
-      testID={`article-${article.id}`}
+      testID='article'
       style={styles.row}
       onPress={() => {
         navigation.navigate('single article', {

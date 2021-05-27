@@ -30,14 +30,14 @@ const App = () => {
           component={SingleArticleView}
           options={() => ({
             headerBackTitle: 'Back',
-            title: 'Fake ? News',
+            title: 'Back',
             headerStyle: {
               backgroundColor: '#111518',
             },
             headerTintColor: '#CEC269',
             headerTitleStyle: {
               fontWeight: 'bold',
-              textAlign: 'center',
+
             }
           })}
         />
