@@ -6,7 +6,7 @@ import {
   Image,
   Dimensions,
   ScrollView,
-  Button,
+  Pressable,
 } from 'react-native';
 import axios from 'axios';
 
@@ -21,6 +21,10 @@ const SingleArticleView = (props) => {
     setSingleArticle(response.data.article);
   };
 
+  const showArticlesInCategory = () => {
+    props.navigation.navigate('view by category', {category: singleArticle.category});
+  };
+
   useEffect(() => {
     fetchArticle();
   }, []);
@@ -32,11 +36,18 @@ const SingleArticleView = (props) => {
         source={{ uri: singleArticle.image }}
         style={styles.image}
       />
+
       <View style={styles.container}>
+        <Pressable
+          testID='category-button'          
+          style={styles.button}
+          onPress={() => showArticlesInCategory()}>
+          <Text>{singleArticle.category}</Text>
+        </Pressable>
+
         <Text testID='title' style={styles.header}>
           {singleArticle.title}
         </Text>
-        <Button backgroundColor='#CEC269' title={singleArticle.category} />
         <Text testID='body' style={styles.body}>
           {singleArticle.body}
         </Text>
@@ -90,5 +101,11 @@ const styles = StyleSheet.create({
     paddingTop: 2,
     paddingRight: 15,
     textAlign: 'right',
+  },
+  button: {
+    backgroundColor: '#CEC269',
+    height: 30,
+    textAlign: 'center',
+    padding: 8,
   },
 });

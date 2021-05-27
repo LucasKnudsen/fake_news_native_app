@@ -1,12 +1,12 @@
 describe('User can see articles in specific category', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles/1', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'articles.json',
     });
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
       fixture: 'article.json',
     });
-    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
+    cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles/Science', {
       fixture: 'scienceCategories.json',
     });
     cy.viewport('iphone-x');
@@ -17,7 +17,7 @@ describe('User can see articles in specific category', () => {
       cy.get('[data-testid=article]').first().click();
       cy.get('[data-testid=category-button]').click();
     });
-    it('is expected to show two articles', () => {
+    it.only('is expected to show two articles', () => {
       cy.get('[data-testid=article]').should('have.length', 2);
     });
     it('is expected to show articles of science category', () => {
