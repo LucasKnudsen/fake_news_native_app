@@ -4,34 +4,39 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
   ImageBackground,
-  Touchable,
   TouchableOpacity,
 } from 'react-native';
 
-const Hero = ({ article }) => {
+const Hero = ({ article, navigation }) => {
   return (
-    <>
-      <TouchableOpacity>
-        <ImageBackground
-          style={styles.heroContainer}
-          source={{
-            uri: article.image,
-          }}
-        >
-          <View style={styles.content}>
-            <View style={{ flexDirection: 'row', marginBottom: 15 }}>
-              <Text style={styles.subHeader}>Featured</Text>
-              <Text style={styles.category}>{article.category}</Text>
-            </View>
-            <Text style={{ color: 'white', fontSize: 20 }}>
-              {article.title}
+    <TouchableOpacity
+      testID="hero-article"
+      onPress={() => {
+        navigation.navigate('single article', {
+          article: article,
+        });
+      }}
+    >
+      <ImageBackground
+        style={styles.heroContainer}
+        source={{
+          uri: article.image,
+        }}
+      >
+        <View style={styles.content}>
+          <View style={{ flexDirection: 'row', marginBottom: 15 }}>
+            <Text style={styles.subHeader}>Featured</Text>
+            <Text testID="category" style={styles.category}>
+              {article.category}
             </Text>
           </View>
-        </ImageBackground>
-      </TouchableOpacity>
-    </>
+          <Text testID="title" style={{ color: 'lightgray', fontSize: 20 }}>
+            {article.title}
+          </Text>
+        </View>
+      </ImageBackground>
+    </TouchableOpacity>
   );
 };
 
@@ -56,6 +61,6 @@ const styles = StyleSheet.create({
     paddingRight: 15,
   },
   category: {
-    color: 'white',
+    color: 'lightgray',
   },
 });
