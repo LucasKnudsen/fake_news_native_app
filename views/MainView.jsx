@@ -20,7 +20,7 @@ const MainView = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {noArticlesMessage ? (
-        <Text testID='no-articles-message' style={styles.error}>No articles availibe at this moment</Text>
+        <Text testID='no-articles-message' style={styles.error}>No articles available at this moment</Text>
       ) : (
         <FlatList
           data={articles}

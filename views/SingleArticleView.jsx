@@ -8,17 +8,15 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
-import axios from 'axios';
+import Articles from '../modules/Articles';
 
 const SingleArticleView = (props) => {
   const { article } = props.route.params;
   const [singleArticle, setSingleArticle] = useState({});
 
   const fetchArticle = async () => {
-    const response = await axios.get(
-      `https://fakest-newzz.herokuapp.com/api/articles/${article.id}`
-    );
-    setSingleArticle(response.data.article);
+    const response = await Articles.getSpecific(article.id);
+    setSingleArticle(response);
   };
 
   const showArticlesInCategory = () => {
