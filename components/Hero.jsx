@@ -1,4 +1,4 @@
-import React from 'react';
+errorMessageimport React from 'react';
 import {
   Dimensions,
   StyleSheet,

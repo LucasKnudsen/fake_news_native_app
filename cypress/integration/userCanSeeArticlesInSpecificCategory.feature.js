@@ -51,7 +51,7 @@ describe('User can see articles in specific category', () => {
     it('is expected to show no article message', () => {
       cy.get('[data-testid=no-articles-message]').should(
         'contain',
-        'No articles availibe at this moment'
+        'No articles available at this moment'
       );
     });
   });

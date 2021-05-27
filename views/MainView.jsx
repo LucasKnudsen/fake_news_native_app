@@ -20,7 +20,7 @@ const MainView = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {noArticlesMessage ? (
-        <Text testID='no-articles-message' style={styles.error}>No articles available at this moment</Text>
+        <Text testID='no-articles-message' style={styles.errorMessage}>No articles availibe at this moment</Text>
       ) : (
         <FlatList
           data={articles}
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#CEC269',
   },
-  error: {
+  errorMessage: {
     fontSize: 18,
     marginTop: '100%',
     textAlign: 'center',
