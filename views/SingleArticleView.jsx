@@ -20,7 +20,7 @@ const SingleArticleView = (props) => {
   };
 
   const showArticlesInCategory = () => {
-    props.navigation.navigate('view by category', {
+    props.navigation.navigate('single category view', {
       category: singleArticle.category,
     });
   };

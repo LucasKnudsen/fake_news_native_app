@@ -3,14 +3,14 @@ import { StyleSheet, View, FlatList, Text } from 'react-native';
 import Article from '../components/Article';
 import Articles from '../modules/Articles';
 
-const ViewByCategory = (props) => {
+const SingleCategoryView = (props) => {
   let category = props.route.params.category;
   const [articles, setArticles] = useState([]);
   const [noArticlesMessage, setNoArticlesMessage] = useState();
 
   const fetchArticles = async () => {
     const response = await Articles.getInCategory(category);
-    response[0] ? setArticles(response) : setNoArticlesMessage(true);
+    response.length === 0 ? setNoArticlesMessage(true) : setArticles(response);
   };
 
   useEffect(() => {
@@ -43,7 +43,7 @@ const ViewByCategory = (props) => {
   );
 };
 
-export default ViewByCategory;
+export default SingleCategoryView;
 
 const styles = StyleSheet.create({
   container: {

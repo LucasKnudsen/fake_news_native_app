@@ -1,7 +1,7 @@
 import React from 'react';
 import MainView from './views/MainView';
 import SingleArticleView from './views/SingleArticleView';
-import ViewByCategory from './views/ViewByCategory';
+import SingleCategoryView from './views/SingleCategoryView';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -15,46 +15,23 @@ const App = () => {
           name='Home'
           component={MainView}
           options={() => ({
+            ...screenOptions,
             title: 'Fake ? News',
-            headerStyle: {
-              backgroundColor: '#111518',
-            },
-            headerTintColor: '#CEC269',
             headerTitleStyle: {
-              fontWeight: 'bold',
               textAlign: 'center',
+              fontWeight: 'bold',
             },
           })}
         />
         <Stack.Screen
           name='single article'
           component={SingleArticleView}
-          options={() => ({
-            headerBackTitle: 'Back',
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: '#111518',
-            },
-            headerTintColor: '#CEC269',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          })}
+          options={() => screenOptions}
         />
         <Stack.Screen
-          name='view by category'
-          component={ViewByCategory}
-          options={() => ({
-            headerBackTitle: 'Back',
-            title: 'Back',
-            headerStyle: {
-              backgroundColor: '#111518',
-            },
-            headerTintColor: '#CEC269',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          })}
+          name='single category view'
+          component={SingleCategoryView}
+          options={() => screenOptions}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -62,3 +39,15 @@ const App = () => {
 };
 
 export default App;
+
+const screenOptions = {
+  headerBackTitle: 'Back',
+  title: 'Back',
+  headerStyle: {
+    backgroundColor: '#111518',
+  },
+  headerTintColor: '#CEC269',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
