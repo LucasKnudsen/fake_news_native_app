@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, FlatList, View } from 'react-native';
-import axios from 'axios';
+import Articles from '../modules/Articles';
 import Article from '../components/Article';
 import Hero from '../components/Hero';
 
 const MainView = ({ navigation }) => {
   const [articles, setArticles] = useState([]);
+  const [noArticlesMessage, setNoArticlesMessage] = useState();
 
   const fetchArticles = async () => {
-    const response = await axios.get(
-      'https://fakest-newzz.herokuapp.com/api/articles'
-    );
-    setArticles(response.data.articles);
+    const response = await Articles.getAll();
+    response[0] ? setArticles(response) : setNoArticlesMessage(true);
   };
 
   useEffect(() => {
@@ -20,26 +19,30 @@ const MainView = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <FlatList
-        data={articles}
-        keyExtractor={(article) => article.id}
-        renderItem={({ item, index }) => {
-          if (index === 0) {
-            return (
-              <>
-                <Hero article={item} key={item.id} navigation={navigation} />
-                <View>
-                  <Text style={styles.header}>Most Recent</Text>
-                </View>
-              </>
-            );
-          } else {
-            return (
-              <Article article={item} key={item.id} navigation={navigation} />
-            );
-          }
-        }}
-      />
+      {noArticlesMessage ? (
+        <Text testID='no-articles-message' style={styles.errorMessage}>No articles availibe at this moment</Text>
+      ) : (
+        <FlatList
+          data={articles}
+          keyExtractor={(article) => article.id}
+          renderItem={({ item, index }) => {
+            if (index === 0) {
+              return (
+                <>
+                  <Hero article={item} key={item.id} navigation={navigation} />
+                  <View>
+                    <Text style={styles.header}>Most Recent</Text>
+                  </View>
+                </>
+              );
+            } else {
+              return (
+                <Article article={item} key={item.id} navigation={navigation} />
+              );
+            }
+          }}
+        />
+      )}
     </View>
   );
 };
@@ -60,4 +63,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#CEC269',
   },
+  errorMessage: {
+    fontSize: 18,
+    marginTop: '100%',
+    textAlign: 'center',
+    color: '#CEC269'
+  }
 });

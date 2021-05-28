@@ -1,6 +1,7 @@
 import React from 'react';
 import MainView from './views/MainView';
 import SingleArticleView from './views/SingleArticleView';
+import ViewByCategory from './views/ViewByCategory';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -11,7 +12,7 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name="Home"
+          name='Home'
           component={MainView}
           options={() => ({
             title: 'Fake ? News',
@@ -26,19 +27,33 @@ const App = () => {
           })}
         />
         <Stack.Screen
-          name="single article"
+          name='single article'
           component={SingleArticleView}
           options={() => ({
             headerBackTitle: 'Back',
-            title: 'Fake ? News',
+            title: 'Back',
             headerStyle: {
               backgroundColor: '#111518',
             },
             headerTintColor: '#CEC269',
             headerTitleStyle: {
               fontWeight: 'bold',
-              textAlign: 'center',
-            }
+            },
+          })}
+        />
+        <Stack.Screen
+          name='view by category'
+          component={ViewByCategory}
+          options={() => ({
+            headerBackTitle: 'Back',
+            title: 'Back',
+            headerStyle: {
+              backgroundColor: '#111518',
+            },
+            headerTintColor: '#CEC269',
+            headerTitleStyle: {
+              fontWeight: 'bold',
+            },
           })}
         />
       </Stack.Navigator>
@@ -47,4 +62,3 @@ const App = () => {
 };
 
 export default App;
-

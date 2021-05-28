@@ -1,0 +1,34 @@
+{
+  "articles": [
+    {
+      "id": 6,
+      "title": "Canada SWAT team molest the Queen",
+      "teaser": "Several police vehicles surrounded Pawlowski after he finished a service on Saturday, ordered him out of his car and made him kneel down on a busy highway to arrest him.",
+      "date": "2021-05-25, 22:59",
+      "category": "Science",
+      "image": "https://media.nature.com/lw800/magazine-assets/d41586-018-05310-x/d41586-018-05310-x_15811194.jpg",
+      "rating": 4.0,
+      "author": {
+        "first_name": "Mr.",
+        "last_name": "Fake"
+      },
+      "premium": true,
+      "published": true
+    },
+    {
+      "id": 5,
+      "title": "The Covid-19 Vaccine Will Contain A Microchip",
+      "teaser": "Despite the majority of us keeping our fingers crossed for a Covid-19 vaccine to be developed as soon as possible, others on the internet are sceptical about the benefits of a such a cure.",
+      "date": "2021-05-25, 20:56",
+      "category": "Science",
+      "image": "https://store-images.s-microsoft.com/image/apps.41418.13510798886375925.7fdd10df-25c0-4a5f-90ce-63205d1f83c4.d5a00a77-17c9-433d-a71d-8f68eef63ed6?mode=scale&q=90&h=1080&w=1920",
+      "rating": 4.0,
+      "author": {
+        "first_name": "Mr.",
+        "last_name": "Fake"
+      },
+      "premium": true,
+      "published": true
+    }
+  ]
+}
