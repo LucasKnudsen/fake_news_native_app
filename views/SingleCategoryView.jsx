@@ -1,35 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, FlatList, Text } from 'react-native';
 import Article from '../components/Article';
 import Articles from '../modules/Articles';
-import {useSelector} from 'react-redux'
+import { useSelector } from 'react-redux';
 
 const SingleCategoryView = (props) => {
   let category = props.route.params.category;
-  const {articlesInCategory} = useSelector((state) => state)
-  const [articles, setArticles] = useState([]);
-  const [noArticlesMessage, setNoArticlesMessage] = useState();
-
-  const fetchArticles = async () => {
-    await Articles.getInCategory(category);
-    debugger
-    articlesInCategory.length === 0 ? setNoArticlesMessage(true) : setArticles(response);
-  };
+  const { articlesInCategory } = useSelector((state) => state);
 
   useEffect(() => {
-    fetchArticles();
+    Articles.getInCategory(category);
   }, []);
 
   return (
     <View style={styles.container}>
-      {noArticlesMessage ? (
+      {articlesInCategory.length === 0 ? (
         <Text testID='no-articles-message' style={styles.errorMessage}>
           No articles available at this moment
         </Text>
       ) : (
         <FlatList
           testID='view-by-category'
-          data={articles}
+          data={articlesInCategory}
           keyExtractor={(article) => article.id}
           renderItem={({ item }) => {
             return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,33 +8,28 @@ import {
   ScrollView,
   Pressable,
 } from 'react-native';
+import { useSelector } from 'react-redux';
 import Articles from '../modules/Articles';
 
-
-
-
 const SingleArticleView = (props) => {
-  const { article } = props.route.params;
-  const [singleArticle, setSingleArticle] = useState({});
-
-  const fetchArticle = async () => {
-    const response = await Articles.getSpecific(article.id);
-    setSingleArticle(response);
-  };
-
+  const articleId = props.route.params.article.id;
+  // const [singleArticle, setSingleArticle] = useState({});
+  const { article } = useSelector((state) => state);
   const showArticlesInCategory = () => {
-    props.navigation.navigate('single category view', {category: article.category});
+    props.navigation.navigate('single category view', {
+      category: article.category,
+    });
   };
 
   useEffect(() => {
-    fetchArticle();
+    Articles.getSpecific(articleId);
   }, []);
 
   return (
     <ScrollView>
       <Image
         testID='image'
-        source={{ uri: singleArticle.image }}
+        source={{ uri: article.image }}
         style={styles.image}
       />
 
@@ -43,21 +38,21 @@ const SingleArticleView = (props) => {
           testID='category-button'
           style={styles.button}
           onPress={() => showArticlesInCategory()}>
-          <Text>{singleArticle.category}</Text>
+          <Text>{article.category}</Text>
         </Pressable>
 
         <Text testID='title' style={styles.header}>
-          {singleArticle.title}
+          {article.title}
         </Text>
         <Text testID='body' style={styles.body}>
-          {singleArticle.body}
+          {article.body}
         </Text>
         <View style={styles.articleFooter}>
           <Text testID='author' style={styles.sub}>
             By {article.author.first_name} {article.author.last_name}
           </Text>
           <Text testID='date' style={styles.date}>
-            {singleArticle.date}
+            {article.date}
           </Text>
         </View>
       </View>
