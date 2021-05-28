@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList, Text } from 'react-native';
 import Article from '../components/Article';
 import Articles from '../modules/Articles';
+import {useSelector} from 'react-redux'
 
 const SingleCategoryView = (props) => {
   let category = props.route.params.category;
+  const {articlesInCategory} = useSelector((state) => state)
   const [articles, setArticles] = useState([]);
   const [noArticlesMessage, setNoArticlesMessage] = useState();
 
   const fetchArticles = async () => {
-    const response = await Articles.getInCategory(category);
-    response.length === 0 ? setNoArticlesMessage(true) : setArticles(response);
+    await Articles.getInCategory(category);
+    debugger
+    articlesInCategory.length === 0 ? setNoArticlesMessage(true) : setArticles(response);
   };
 
   useEffect(() => {

@@ -10,6 +10,9 @@ import {
 } from 'react-native';
 import Articles from '../modules/Articles';
 
+
+
+
 const SingleArticleView = (props) => {
   const { article } = props.route.params;
   const [singleArticle, setSingleArticle] = useState({});
@@ -20,9 +23,7 @@ const SingleArticleView = (props) => {
   };
 
   const showArticlesInCategory = () => {
-    props.navigation.navigate('single category view', {
-      category: singleArticle.category,
-    });
+    props.navigation.navigate('single category view', {category: article.category});
   };
 
   useEffect(() => {
