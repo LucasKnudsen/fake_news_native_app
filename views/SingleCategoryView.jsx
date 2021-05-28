@@ -22,7 +22,7 @@ const SingleCategoryView = (props) => {
         <FlatList
           testID='view-by-category'
           data={articlesInCategory}
-          keyExtractor={(article) => article.id}
+          keyExtractor={(article) => article.id.toString()}
           renderItem={({ item }) => {
             return (
               <Article

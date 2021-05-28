@@ -21,7 +21,7 @@ const MainView = ({ navigation }) => {
       ) : (
         <FlatList
           data={articles}
-          keyExtractor={(article) => article.id}
+          keyExtractor={(article) => article.id.toString()}
           renderItem={({ item, index }) => {
             if (index === 0) {
               return (
