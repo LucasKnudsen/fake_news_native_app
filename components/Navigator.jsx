@@ -10,7 +10,6 @@ const Stack = createStackNavigator();
 
 const Navigator = () => {
   const category = useSelector((state) => state.category);
-  debugger
   return (
     <NavigationContainer>
       <Stack.Navigator>

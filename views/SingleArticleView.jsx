@@ -13,7 +13,6 @@ import Articles from '../modules/Articles';
 
 const SingleArticleView = (props) => {
   const articleId = props.route.params.article.id;
-  // const [singleArticle, setSingleArticle] = useState({});
   const { article } = useSelector((state) => state);
   const showArticlesInCategory = () => {
     props.navigation.navigate('single category view', {

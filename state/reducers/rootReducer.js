@@ -12,6 +12,11 @@ const rootReducer = (state, action) => {
         ...state,
         article: payload.article,
       };
+    case 'SET_MAIN_VIEW':
+      return {
+        ...state,
+        articles: payload.articles,
+      };
   }
   return state;
 };

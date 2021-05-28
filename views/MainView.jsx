@@ -1,25 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { StyleSheet, Text, FlatList, View } from 'react-native';
 import Articles from '../modules/Articles';
 import Article from '../components/Article';
 import Hero from '../components/Hero';
 
 const MainView = ({ navigation }) => {
-  const [articles, setArticles] = useState([]);
-  const [noArticlesMessage, setNoArticlesMessage] = useState();
-
-  const fetchArticles = async () => {
-    const response = await Articles.getAll();
-    response.length === 0 ? setNoArticlesMessage(true) : setArticles(response);
-  };
+  const { articles } = useSelector((state) => state);
 
   useEffect(() => {
-    fetchArticles();
+    Articles.getAll();
   }, []);
 
   return (
     <View style={styles.container}>
-      {noArticlesMessage ? (
+      {articles.length === 0 ? (
         <Text testID='no-articles-message' style={styles.errorMessage}>
           No articles availibe at this moment
         </Text>

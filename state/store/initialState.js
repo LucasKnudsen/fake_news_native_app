@@ -1,7 +1,10 @@
 const initialState = {
   category: '',
   articlesInCategory: [],
-  article: {},
-}
+  article: {
+    author: {},
+  },
+  articles: [],
+};
 
-export default initialState
+export default initialState;

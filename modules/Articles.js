@@ -3,13 +3,23 @@ import store from '../state/store/configureStore';
 
 const uri = 'https://fakest-newzz.herokuapp.com/api/articles';
 const Articles = {
-  async getAll() {    
+  async getAll() {
     const response = await axios.get(uri);
-    return response.data.articles;
+    store.dispatch({
+      type: 'SET_MAIN_VIEW',
+      payload: {
+        articles: response.data.articles,
+      },
+    });
   },
   async getSpecific(id) {
     const response = await axios.get(`${uri}/${id}`);
-    return response.data.article;
+    store.dispatch({
+      type: 'SET_SINGLE_ARTICLE_VIEW',
+      payload: {
+        article: response.data.article,
+      },
+    });
   },
   async getInCategory(category) {
     const response = await axios.get(`${uri}/${category}`);
