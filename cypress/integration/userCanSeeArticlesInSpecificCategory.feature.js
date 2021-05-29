@@ -1,5 +1,6 @@
 describe('User can see articles in specific category', () => {
   beforeEach(() => {
+    cy.viewport('iphone-x');
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'articles.json',
     });
@@ -16,7 +17,6 @@ describe('User can see articles in specific category', () => {
           fixture: 'scienceCategories.json',
         }
       );
-      cy.viewport('iphone-x');
       cy.visit('/');
       cy.get('[data-testid=article]').first().click();
       cy.get('[data-testid=category-button]').click();
@@ -43,7 +43,6 @@ describe('User can see articles in specific category', () => {
           articles: [],
         }
       );
-      cy.viewport('iphone-x');
       cy.visit('/');
       cy.get('[data-testid=article]').first().click();
       cy.get('[data-testid=category-button]').click();

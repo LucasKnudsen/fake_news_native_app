@@ -1,12 +1,12 @@
 describe('User can see single article', () => {
   beforeEach(() => {
+    cy.viewport('iphone-x');
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
       fixture: 'articles.json',
     });
     cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles/**', {
       fixture: 'article.json',
     });
-    cy.viewport('iphone-x');
     cy.visit('/');
   });
   it('is expected to display selected article', () => {

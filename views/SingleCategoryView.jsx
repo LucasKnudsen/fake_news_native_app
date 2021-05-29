@@ -1,33 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { StyleSheet, View, FlatList, Text } from 'react-native';
 import Article from '../components/Article';
 import Articles from '../modules/Articles';
+import { useSelector } from 'react-redux';
 
-const ViewByCategory = (props) => {
+const SingleCategoryView = (props) => {
   let category = props.route.params.category;
-  const [articles, setArticles] = useState([]);
-  const [noArticlesMessage, setNoArticlesMessage] = useState();
-
-  const fetchArticles = async () => {
-    const response = await Articles.getInCategory(category);
-    response[0] ? setArticles(response) : setNoArticlesMessage(true);
-  };
+  const { articlesInCategory } = useSelector((state) => state);
 
   useEffect(() => {
-    fetchArticles();
+    Articles.getInCategory(category);
   }, []);
 
   return (
     <View style={styles.container}>
-      {noArticlesMessage ? (
+      {articlesInCategory.length === 0 ? (
         <Text testID='no-articles-message' style={styles.errorMessage}>
           No articles available at this moment
         </Text>
       ) : (
         <FlatList
           testID='view-by-category'
-          data={articles}
-          keyExtractor={(article) => article.id}
+          data={articlesInCategory}
+          keyExtractor={(article) => article.id.toString()}
           renderItem={({ item }) => {
             return (
               <Article
@@ -43,7 +38,7 @@ const ViewByCategory = (props) => {
   );
 };
 
-export default ViewByCategory;
+export default SingleCategoryView;
 
 const styles = StyleSheet.create({
   container: {

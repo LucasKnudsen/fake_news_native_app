@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { StyleSheet, Text, FlatList, View } from 'react-native';
 import Articles from '../modules/Articles';
 import Article from '../components/Article';
 import Hero from '../components/Hero';
 
 const MainView = ({ navigation }) => {
-  const [articles, setArticles] = useState([]);
-  const [noArticlesMessage, setNoArticlesMessage] = useState();
-
-  const fetchArticles = async () => {
-    const response = await Articles.getAll();
-    response[0] ? setArticles(response) : setNoArticlesMessage(true);
-  };
+  const { articles } = useSelector((state) => state);
 
   useEffect(() => {
-    fetchArticles();
+    Articles.getAll();
   }, []);
 
   return (
     <View style={styles.container}>
-      {noArticlesMessage ? (
-        <Text testID='no-articles-message' style={styles.errorMessage}>No articles availibe at this moment</Text>
+      {articles.length === 0 ? (
+        <Text testID='no-articles-message' style={styles.errorMessage}>
+          No articles availibe at this moment
+        </Text>
       ) : (
         <FlatList
           data={articles}
-          keyExtractor={(article) => article.id}
+          keyExtractor={(article) => article.id.toString()}
           renderItem={({ item, index }) => {
             if (index === 0) {
               return (
@@ -67,6 +64,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginTop: '100%',
     textAlign: 'center',
-    color: '#CEC269'
-  }
+    color: '#CEC269',
+  },
 });

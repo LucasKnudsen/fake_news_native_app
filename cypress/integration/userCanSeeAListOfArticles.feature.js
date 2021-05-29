@@ -1,10 +1,12 @@
 describe('User can see a list of articles', () => {
+  beforeEach(() => {
+    cy.viewport('iphone-x');
+  });
   describe('successfully', () => {
     beforeEach(() => {
       cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
         fixture: 'articles.json',
       });
-      cy.viewport('iphone-x');
       cy.visit('/');
     });
     it('is expected to display a hero section', () => {
@@ -39,7 +41,6 @@ describe('User can see a list of articles', () => {
       cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/articles', {
         articles: [],
       });
-      cy.viewport('iphone-x');
       cy.visit('/');
     });
     it('is expected to show no article message', () => {
