@@ -21,7 +21,7 @@ const Articles = {
     });
   },
   async getInCategory(category) {
-    const response = await axios.get(`/articles/${category}`);
+    const response = await axios.get(`/articles/?category=${category}`);
     store.dispatch({
       type: 'SET_CATEGORY_VIEW',
       payload: {

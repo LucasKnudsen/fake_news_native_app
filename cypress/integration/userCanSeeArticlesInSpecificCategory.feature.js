@@ -12,7 +12,7 @@ describe('User can see articles in specific category', () => {
     beforeEach(() => {
       cy.intercept(
         'GET',
-        'https://fakest-newzz.herokuapp.com/api/articles/Science',
+        'https://fakest-newzz.herokuapp.com/api/articles/?category=**',
         {
           fixture: 'scienceCategories.json',
         }
@@ -38,7 +38,7 @@ describe('User can see articles in specific category', () => {
     beforeEach(() => {
       cy.intercept(
         'GET',
-        'https://fakest-newzz.herokuapp.com/api/articles/Science',
+        'https://fakest-newzz.herokuapp.com/api/articles/?category=**',
         {
           articles: [],
         }
