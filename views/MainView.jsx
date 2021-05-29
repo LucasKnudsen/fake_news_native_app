@@ -9,7 +9,7 @@ const MainView = ({ navigation }) => {
   const { articles } = useSelector((state) => state);
 
   useEffect(() => {
-    Articles.getAll();
+    Articles.index();
   }, []);
 
   return (

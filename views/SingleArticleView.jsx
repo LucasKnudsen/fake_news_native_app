@@ -21,7 +21,7 @@ const SingleArticleView = (props) => {
   };
 
   useEffect(() => {
-    Articles.getSpecific(articleId);
+    Articles.show(articleId);
   }, []);
 
   return (
