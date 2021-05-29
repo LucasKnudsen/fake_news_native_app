@@ -1,49 +1,49 @@
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import store from '../state/store/configureStore';
 
 const apiUrl =
-  process.env.NODE_ENV === "development" && "http://localhost:3000";
+  process.env.NODE_ENV === 'development' && 'http://localhost:3000';
 const defaultOptions = {
-  prefixUrl: 'https://fakest-newzz.herokuapp.com/api',
-  mode: "local",
+  mode: 'local',
   debug: false,
   useRoles: false,
 };
 
 const storage = AsyncStorage;
-const storageKey = "auth-storage";
-const storageRoleKey = "auth-roles";
+const storageKey = 'auth-storage';
+const storageRoleKey = 'auth-roles';
 class Authentication {
   constructor(options) {
     this.options = { ...defaultOptions, ...options };
     this.roles = options.useRoles ? [] : undefined;
     this.apiUrl = `${options.host}${
-      options.prefixUrl ? options.prefixUrl : ""
+      options.prefixUrl ? options.prefixUrl : ''
     }`;
     this.apiAuthUrl = `${this.apiUrl}${
-      options.authUrl ? options.authUrl : "/auth"
+      options.authUrl ? options.authUrl : '/auth'
     }`;
-    this.emailInput = options.emailInput ? options.emailInput : "email";
+    this.emailInput = options.emailInput ? options.emailInput : 'email';
     this.passwordField = options.passwordField
       ? options.passwordField
-      : "password";
+      : 'password';
     this.signInUrl = `${this.apiAuthUrl}${
-      this.options.authUrl ? this.options.authUrl.signIn : "/sign_in"
+      this.options.authUrl ? this.options.authUrl.signIn : '/sign_in'
     }`;
     this.signOutUrl = `${this.apiAuthUrl}${
-      this.options.authUrl ? this.options.authUrl.signIn : "/sign_out"
+      this.options.authUrl ? this.options.authUrl.signIn : '/sign_out'
     }`;
     this.validateTokenUrl = `${this.apiAuthUrl}${
       this.options.authUrl
         ? this.options.authUrl.validateToken
-        : "/validate_token"
+        : '/validate_token'
     }`;
     axios.interceptors.response.use(
       (response) => {
         if (Array.isArray(response.data)) {
           return {
             ...response,
-            total: parseInt(response.headers["data-count"]),
+            total: parseInt(response.headers['data-count']),
           };
         }
         return response;
@@ -62,9 +62,9 @@ class Authentication {
       })
       .catch((error) => {
         if (error.response) {
-          console.log("Connection success");
+          console.log('Connection success');
         } else {
-          console.log("Connection errror");
+          console.log('Connection errror');
         }
       });
   }
@@ -101,6 +101,10 @@ class Authentication {
         );
         this.setRoles(validateResponse);
         resolve(validateResponse);
+        store.dispatch({
+          type: 'AUTHENTICATE',
+          payload: validateResponse.data,
+        });
       } catch (error) {
         reject(error);
       }
@@ -108,7 +112,7 @@ class Authentication {
   }
   signOut() {
     this.session = JSON.parse(storage.getItem(storageKey));
-    if (!this.session) throw "No active session";
+    if (!this.session) throw 'No active session';
     storage.removeItem(storageKey);
     const lastSession = this.session;
     this.session = undefined;
@@ -119,12 +123,12 @@ class Authentication {
         });
         resolve(logOutResponse.data);
       } catch (err) {
-        resolve("Error when delete server session but local was deleted");
+        resolve('Error when delete server session but local was deleted');
       }
     });
   }
   deleteResource() {
-    if (!this.session) throw "No active session";
+    if (!this.session) throw 'No active session';
     return new Promise(async (resolve, reject) => {
       try {
         const logOutResponse = await axios.delete(this.apiAuthUrl, {
@@ -143,7 +147,7 @@ class Authentication {
           params: {
             uid: headers.uid,
             client: headers.client,
-            "access-token": headers["access-token"],
+            'access-token': headers['access-token'],
           },
         });
         this.setSession(response.headers);
@@ -170,7 +174,7 @@ class Authentication {
         this.setSession(changePasswordResponse.headers);
         resolve(changePasswordResponse);
       } catch (err) {
-        if (err.response.headers["access-token"]) {
+        if (err.response.headers['access-token']) {
           this.setSession(err.response.headers);
         }
         reject(err);
@@ -208,7 +212,7 @@ class Authentication {
     });
   }
   privateRoute(url, options = {}) {
-    if (url[0] === "/") {
+    if (url[0] === '/') {
       url = `${this.apiUrl}${url}`;
     }
     return new Promise(async (resolve, reject) => {
@@ -226,7 +230,7 @@ class Authentication {
         this.setSession(reponse.headers);
         resolve(reponse);
       } catch (err) {
-        if (err.response.headers["access-token"]) {
+        if (err.response.headers['access-token']) {
           this.setSession(err.response.headers);
         }
         reject(err);
@@ -238,27 +242,27 @@ class Authentication {
       return (this.session = headers);
     }
     const session = {
-      ["access-token"]: headers["access-token"]
-        ? headers["access-token"]
-        : this.session["access-token"],
-      ["cache-control"]: headers["cache-control"]
-        ? headers["cache-control"]
-        : this.session["cache-control"],
+      ['access-token']: headers['access-token']
+        ? headers['access-token']
+        : this.session['access-token'],
+      ['cache-control']: headers['cache-control']
+        ? headers['cache-control']
+        : this.session['cache-control'],
       client: headers.client ? headers.client : this.session.client,
-      ["content-type"]: headers["content-type"]
-        ? headers["content-type"]
-        : this.session["content-type"],
+      ['content-type']: headers['content-type']
+        ? headers['content-type']
+        : this.session['content-type'],
       expiry: headers.expiry ? headers.expiry : this.session.expiry,
-      ["token-type"]: headers["token-type"]
-        ? headers["token-type"]
-        : this.session["token-type"],
+      ['token-type']: headers['token-type']
+        ? headers['token-type']
+        : this.session['token-type'],
       uid: headers.uid ? headers.uid : this.session.uid,
     };
     this.session = { ...session };
     await storage.setItem(storageKey, JSON.stringify(session));
   }
   async setLastSession() {
-    if (this.options.mode === "local") {
+    if (this.options.mode === 'local') {
       await this.setLastLocalSession();
     }
     if (this.options.useRoles) {
@@ -299,4 +303,3 @@ class Authentication {
   }
 }
 export default Authentication;
-

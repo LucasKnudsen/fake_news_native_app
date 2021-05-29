@@ -17,8 +17,17 @@ const rootReducer = (state, action) => {
         ...state,
         articles: payload.articles,
       };
+    case 'AUTHENTICATE':
+      debugger;
+      return {
+        ...state,
+        authenticated: true,
+        name: `${payload.first_name} ${payload.last_name}`,
+      };
+    default: {
+      return state;
+    }
   }
-  return state;
 };
 
 export default rootReducer;
