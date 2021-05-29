@@ -5,6 +5,7 @@ import SingleCategoryView from '../views/SingleCategoryView';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
+import LoginView from '../views/LoginView';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,17 @@ const Navigator = () => {
             title: 'Fake ? News',
           })}
         />
+        <Stack.Screen
+        name='logIn'
+        component={LoginView}
+        options={() => ({
+          ...screenOptions,
+          headerTitleStyle: {
+            textAlign: 'left',
+            fontWeight: 'bold',
+          },
+        })}
+      />
         <Stack.Screen
           name='single article'
           component={SingleArticleView}
