@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 const Article = ({ article, navigation }) => {
   const { authenticated } = useSelector((state) => state);
+
   return (
     <TouchableOpacity
       testID='article'

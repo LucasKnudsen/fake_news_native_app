@@ -22,7 +22,7 @@ const SingleArticleView = (props) => {
 
   useEffect(() => {
     Articles.show(articleId);
-  }, []);
+  }, [articleId]);
 
   return (
     <ScrollView>
