@@ -23,9 +23,7 @@ const LoginView = ({ navigation, route }) => {
     try {
       await auth.signIn(email, password);
       navigation.navigate('single article', { article: article });
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
