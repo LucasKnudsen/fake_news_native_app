@@ -46,7 +46,7 @@ describe('User can see a list of articles', () => {
     it('is expected to show no article message', () => {
       cy.get('[data-testid=no-articles-message]').should(
         'contain',
-        'No articles availibe at this moment'
+        'No articles available at this moment'
       );
     });
   });

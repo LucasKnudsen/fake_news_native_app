@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigator from './components/Navigator';
 import { Provider } from 'react-redux';
+
 import store from './state/store/configureStore';
 import axios from 'axios';
 

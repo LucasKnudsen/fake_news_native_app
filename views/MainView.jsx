@@ -16,7 +16,7 @@ const MainView = ({ navigation }) => {
     <View style={styles.container}>
       {articles.length === 0 ? (
         <Text testID='no-articles-message' style={styles.errorMessage}>
-          No articles availibe at this moment
+          No articles available at this moment
         </Text>
       ) : (
         <FlatList

@@ -17,8 +17,17 @@ const rootReducer = (state, action) => {
         ...state,
         articles: payload.articles,
       };
+    case 'SET_ERROR':
+      return {
+        ...state,
+        errorMessage: action.payload,
+      };
+    case 'RESET_ERROR':
+      return {
+        ...state,
+        errorMessage: '',
+      };
     case 'AUTHENTICATE':
-      debugger;
       return {
         ...state,
         authenticated: true,

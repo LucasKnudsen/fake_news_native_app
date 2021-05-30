@@ -106,6 +106,16 @@ class Authentication {
           payload: validateResponse.data,
         });
       } catch (error) {
+        let error_message;
+        if (error.response) {
+          console.log(error.response.data.errors);
+          error_message = error.response.data.errors;
+        }
+        error_message = error_message
+          ? error_message
+          : 'Something went wrong, please try again later';
+        console.log(error_message);
+        store.dispatch({ type: 'SET_ERROR', payload: error_message });
         reject(error);
       }
     });
