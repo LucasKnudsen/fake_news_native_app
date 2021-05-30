@@ -5,6 +5,7 @@ const initialState = {
     author: {},
   },
   articles: [],
+  errorMessage: '',
 };
 
 export default initialState;

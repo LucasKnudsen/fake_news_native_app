@@ -1,10 +1,9 @@
 import axios from 'axios';
 import store from '../state/store/configureStore';
 
-const uri = 'https://fakest-newzz.herokuapp.com/api/articles';
 const Articles = {
-  async getAll() {
-    const response = await axios.get(uri);
+  async index() {
+    const response = await axios.get('/articles');
     store.dispatch({
       type: 'SET_MAIN_VIEW',
       payload: {
@@ -12,8 +11,8 @@ const Articles = {
       },
     });
   },
-  async getSpecific(id) {
-    const response = await axios.get(`${uri}/${id}`);
+  async show(id) {
+    const response = await axios.get(`/articles/${id}`);
     store.dispatch({
       type: 'SET_SINGLE_ARTICLE_VIEW',
       payload: {
@@ -22,7 +21,7 @@ const Articles = {
     });
   },
   async getInCategory(category) {
-    const response = await axios.get(`${uri}/${category}`);
+    const response = await axios.get(`/articles/?category=${category}`);
     store.dispatch({
       type: 'SET_CATEGORY_VIEW',
       payload: {
@@ -31,5 +30,7 @@ const Articles = {
       },
     });
   },
+  
+
 };
 export default Articles;

@@ -21,8 +21,8 @@ const SingleArticleView = (props) => {
   };
 
   useEffect(() => {
-    Articles.getSpecific(articleId);
-  }, []);
+    Articles.show(articleId);
+  }, [articleId]);
 
   return (
     <ScrollView>
@@ -63,8 +63,8 @@ export default SingleArticleView;
 
 const styles = StyleSheet.create({
   container: {
-    height: Dimensions.get('window').height,
     backgroundColor: '#111518',
+    flex: 1,
   },
   image: {
     height: 250,

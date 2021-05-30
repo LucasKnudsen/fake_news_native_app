@@ -1,13 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { useSelector } from 'react-redux';
 
 const Article = ({ article, navigation }) => {
+  const { authenticated } = useSelector((state) => state);
+
   return (
     <TouchableOpacity
       testID='article'
       style={styles.row}
       onPress={() => {
-        navigation.navigate('single article', {
+        navigation.navigate(authenticated ? 'single article' : 'logIn', {
           article: article,
         });
       }}>
