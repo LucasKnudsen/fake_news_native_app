@@ -1,6 +1,7 @@
 import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
+import SingleBackyardView from '../views/SingleBackyardView';
 
 import BackyardView from '../views/BackyardView';
 
@@ -38,9 +39,9 @@ const BackyardStack = () => {
         })}
       />
 
-      {/* <Stack.Screen
+      <Stack.Screen
         name='backyard-article'
-        component={BackyardArticleView}
+        component={SingleBackyardView}
         options={({ navigation }) => ({
           title: 'Back',
           headerLeft: () => (
@@ -49,13 +50,13 @@ const BackyardStack = () => {
               style={{ color: '#CEC269', paddingLeft: 15 }}
               size={24}
               onPress={() => {
-                navigation.navigate('Home');
+                navigation.navigate('backyard-home');
                 store.dispatch({ type: 'RESET_ERROR' });
               }}
             />
           ),
         })}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };
