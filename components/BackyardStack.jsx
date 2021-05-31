@@ -10,7 +10,7 @@ import store from '../state/store/configureStore';
 
 const Stack = createStackNavigator();
 
-const HomeStack = () => {
+const BackyardStack = () => {
   const { category } = useSelector((state) => state);
   
 
@@ -23,10 +23,10 @@ const HomeStack = () => {
         headerTintColor: '#CEC269',
       })}>
       <Stack.Screen
-        name='Home'
-        component={MainView}
+        name='backyard-home'
+        component={BackyardView}
         options={({ navigation }) => ({
-          title: 'FAKE ? NEWS',
+          title: 'BACKYARD',
           headerTitleStyle: {
             textAlign: 'center',
             fontWeight: 'bold',
@@ -43,9 +43,10 @@ const HomeStack = () => {
           ),
         })}
       />
+     
       <Stack.Screen
-        name='logIn'
-        component={LoginView}
+        name='backyard-article'
+        component={BackyardArticleView}
         options={({ navigation }) => ({
           title: 'Back',
           headerLeft: () => (
@@ -60,32 +61,9 @@ const HomeStack = () => {
             />
           ),
         })}
-      />
-      <Stack.Screen
-        name='single article'
-        component={SingleArticleView}
-        options={({ navigation }) => ({
-          title: 'Back',
-          headerLeft: () => (
-            <AntDesign
-              name='arrowleft'
-              style={{ color: '#CEC269', paddingLeft: 15 }}
-              size={24}
-              onPress={() => {
-                navigation.navigate('Home');
-                store.dispatch({ type: 'RESET_ERROR' });
-              }}
-            />
-          ),
-        })}
-      />
-      <Stack.Screen
-        name='single category view'
-        component={SingleCategoryView}
-        options={() => ({ title: category })}
       />
     </Stack.Navigator>
   );
 };
 
-export default HomeStack;
+export default BackyardStack;

@@ -17,12 +17,17 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Drawer.Navigator
+          drawerContentOptions={{
+            activeBackgroundColor: '#CEC269',
+            inactiveBackgroundColor: '#333',
+            inactiveTintColor: 'white'
+          }}
           initialRouteName='Home'
           drawerStyle={{
             backgroundColor: 'rgba(0,0,0,0.6)',
           }}>
           <Drawer.Screen name='Home' component={HomeStack} />
-          <Drawer.Screen name='Backyard Articles' component={HomeStack} />
+          <Drawer.Screen name='Backyard Articles' component='' />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>
