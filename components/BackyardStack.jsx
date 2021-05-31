@@ -21,8 +21,8 @@ const BackyardStack = () => {
         component={BackyardView}
         options={({ navigation }) => ({
           title: 'BACKYARD',
+          headerTitleAlign: 'center',
           headerTitleStyle: {
-            textAlign: 'center',
             fontWeight: 'bold',
           },
           headerLeft: () => (

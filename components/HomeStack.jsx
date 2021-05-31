@@ -12,7 +12,6 @@ const Stack = createStackNavigator();
 
 const HomeStack = () => {
   const { category } = useSelector((state) => state);
-  
 
   return (
     <Stack.Navigator
@@ -27,8 +26,8 @@ const HomeStack = () => {
         component={MainView}
         options={({ navigation }) => ({
           title: 'FAKE ? NEWS',
+          headerTitleAlign: 'center',
           headerTitleStyle: {
-            textAlign: 'center',
             fontWeight: 'bold',
           },
           headerLeft: () => (

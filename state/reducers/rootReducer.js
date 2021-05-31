@@ -18,7 +18,6 @@ const rootReducer = (state, action) => {
         articles: payload.articles,
       };
     case 'SET_BACKYARD_VIEW':
-      debugger;
       return {
         ...state,
         backyardArticles: payload.backyardArticles,
