@@ -38,7 +38,6 @@ const BackyardStack = () => {
           ),
         })}
       />
-
       <Stack.Screen
         name='backyard-article'
         component={SingleBackyardView}
