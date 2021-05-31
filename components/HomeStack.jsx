@@ -32,6 +32,7 @@ const HomeStack = () => {
           },
           headerLeft: () => (
             <AntDesign
+            testID='drawer-menu'
               name='menu-fold'
               style={{ color: '#CEC269', paddingLeft: 15 }}
               size={24}

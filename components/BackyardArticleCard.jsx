@@ -4,10 +4,10 @@ import { StyleSheet, Text, View } from 'react-native';
 const BackyardArticleCard = ({ article, navigation }) => {
   return (
     <View style={styles.content}>
-      <Text style={styles.title}>{article.title}</Text>
+      <Text testID='backyard-title' style={styles.title}>{article.title}</Text>
       <View style={styles.cardContent}>
-        <Text style={styles.theme}>{article.theme}</Text>
-        <Text style={styles.written_by}>{article.written_by}</Text>
+        <Text testID='backyard-theme' style={styles.theme}>{article.theme}</Text>
+        <Text testID='backyard-written_by' style={styles.written_by}>{article.written_by}</Text>
       </View>
     </View>
   );
