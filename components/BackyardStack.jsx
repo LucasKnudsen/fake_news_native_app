@@ -1,18 +1,12 @@
 import React from 'react';
 import { AntDesign } from '@expo/vector-icons';
-import MainView from '../views/MainView';
-import SingleArticleView from '../views/SingleArticleView';
-import SingleCategoryView from '../views/SingleCategoryView';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useSelector } from 'react-redux';
-import LoginView from '../views/LoginView';
-import store from '../state/store/configureStore';
+
+import BackyardView from '../views/BackyardView';
 
 const Stack = createStackNavigator();
 
 const BackyardStack = () => {
-  const { category } = useSelector((state) => state);
-  
 
   return (
     <Stack.Navigator
@@ -43,8 +37,8 @@ const BackyardStack = () => {
           ),
         })}
       />
-     
-      <Stack.Screen
+
+      {/* <Stack.Screen
         name='backyard-article'
         component={BackyardArticleView}
         options={({ navigation }) => ({
@@ -61,7 +55,7 @@ const BackyardStack = () => {
             />
           ),
         })}
-      />
+      /> */}
     </Stack.Navigator>
   );
 };

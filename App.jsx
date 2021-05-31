@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeStack from './components/HomeStack';
+import BackyardStack from './components/BackyardStack';
 
 window.store = store;
 
@@ -20,14 +21,16 @@ const App = () => {
           drawerContentOptions={{
             activeBackgroundColor: '#CEC269',
             inactiveBackgroundColor: '#333',
-            inactiveTintColor: 'white'
+            inactiveTintColor: 'white',
+            activeTintColor: '#333',
           }}
           initialRouteName='Home'
           drawerStyle={{
             backgroundColor: 'rgba(0,0,0,0.6)',
+            width: '52.5%',
           }}>
           <Drawer.Screen name='Home' component={HomeStack} />
-          <Drawer.Screen name='Backyard Articles' component='' />
+          <Drawer.Screen name='Backyard Articles' component={BackyardStack} />
         </Drawer.Navigator>
       </NavigationContainer>
     </Provider>

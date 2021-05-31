@@ -1,10 +1,11 @@
 const initialState = {
   category: '',
+  articles: [],
   articlesInCategory: [],
   article: {
     author: {},
   },
-  articles: [],
+  backyardArticles: [],
   errorMessage: '',
 };
 

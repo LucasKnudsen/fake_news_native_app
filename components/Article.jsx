@@ -1,9 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { useSelector } from 'react-redux';
 
 const Article = ({ article, navigation }) => {
-  const { authenticated } = useSelector((state) => state);
 
   return (
     <TouchableOpacity

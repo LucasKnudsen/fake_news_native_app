@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { StyleSheet, Text, FlatList, View } from 'react-native';
-import backyard from '../modules/backyard';
-import Article from '../components/Article';
-import Hero from '../components/Hero';
+import { getLocation } from '../modules/BackyardArticles';
+import BackyardArticleCard from '../components/BackyardArticleCard';
 
 const BackyardView = ({ navigation }) => {
   const { backyardArticles } = useSelector((state) => state);
 
   useEffect(() => {
-    BackyardArticle.index();
+    getLocation();
   }, []);
 
   return (
@@ -22,10 +21,8 @@ const BackyardView = ({ navigation }) => {
         <FlatList
           data={backyardArticles}
           keyExtractor={(article) => article.id.toString()}
-          renderItem={({ item}) => {
-            return (
-              <Article article={item} key={item.id} navigation={navigation} />
-            );
+          renderItem={({ item }) => {
+            return <BackyardArticleCard article={item} navigation={navigation} />;
           }}
         />
       )}
