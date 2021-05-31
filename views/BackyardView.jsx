@@ -19,10 +19,13 @@ const BackyardView = ({ navigation }) => {
         </Text>
       ) : (
         <FlatList
+          numColumns={2}
           data={backyardArticles}
           keyExtractor={(article) => article.id.toString()}
           renderItem={({ item }) => {
-            return <BackyardArticleCard article={item} navigation={navigation} />;
+            return (
+              <BackyardArticleCard article={item} navigation={navigation} />
+            );
           }}
         />
       )}
