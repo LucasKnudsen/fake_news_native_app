@@ -34,7 +34,7 @@ const MainView = ({ navigation }) => {
               );
             } else {
               return (
-                <Article article={item} key={item.id} navigation={navigation} />
+                <Article article={item} navigation={navigation} />
               );
             }
           }}

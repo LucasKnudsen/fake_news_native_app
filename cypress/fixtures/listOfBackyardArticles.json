@@ -1,0 +1,23 @@
+{
+  "backyard_articles": [
+      {
+          "id": 15,
+          "title": "UFO Crash Site Found! Inexplicable Proof That Aliens On Mars Had Spacecraft",
+          "theme": "Aliens are real!",
+          "date": "2021-05-30, 20:21",
+          "written_by": "Bob Kramer",
+          "location": "Denmark",
+          "status": "Published"
+      },
+      {
+          "id": 18,
+          "title": "The Illuminati’s purpose is to secure the ongoing survival of the human species.",
+          "theme": "Join Us!",
+          "date": "2021-05-30, 20:18",
+          "written_by": "Bob Kramer",
+          "location": "Denmark",
+          "status": "Published"
+      }
+  ],
+  "location": "Denmark"
+}
