@@ -7,7 +7,6 @@ import BackyardView from '../views/BackyardView';
 const Stack = createStackNavigator();
 
 const BackyardStack = () => {
-
   return (
     <Stack.Navigator
       screenOptions={() => ({
@@ -37,25 +36,6 @@ const BackyardStack = () => {
           ),
         })}
       />
-
-      {/* <Stack.Screen
-        name='backyard-article'
-        component={BackyardArticleView}
-        options={({ navigation }) => ({
-          title: 'Back',
-          headerLeft: () => (
-            <AntDesign
-              name='arrowleft'
-              style={{ color: '#CEC269', paddingLeft: 15 }}
-              size={24}
-              onPress={() => {
-                navigation.navigate('Home');
-                store.dispatch({ type: 'RESET_ERROR' });
-              }}
-            />
-          ),
-        })}
-      /> */}
     </Stack.Navigator>
   );
 };
